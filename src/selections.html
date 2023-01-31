@@ -3,14 +3,25 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>D3 In Depth</title>
+    <title>D3 In Depth - Selections</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <!-- <link rel="stylesheet" href="./css/boilerplate.css" /> -->
   </head>
 
   <body>
-    <div id="chart"></div>
-    <script src="./js/boilerplate.js"></script>
+    <h1>gotta pop em all - fun with selections</h1>
+    <div id="chart">
+      <svg width="960" height="960">
+        <g transform="translate(70, 70)">
+          <circle />
+          <circle cx="120" />
+          <circle cx="240" />
+          <circle cx="360" />
+          <circle cx="480" />
+        </g>
+      </svg>
+    </div>
+    <script src="./js/selections.js"></script>
   </body>
 </html>
