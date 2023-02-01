@@ -25,17 +25,17 @@ const update = (data) =>
         return enter
           .append("circle")
           .style("fill", "red")
-          .on("mouseover", (e) => {
-            console.log("mouse");
-            d3.select(e.currentTarget).style("fill", "black");
-          })
+          .on("mouseover", (e) =>
+            d3.select(e.currentTarget).style("fill", "black")
+          )
           .attr("cx", () => 800)
           .attr("cy", () => 200)
           .transition()
           .duration(800)
           .ease(d3.easeBounce)
           .attr("cx", (_d, i) => i * 80)
-          .attr("cy", (_d, i) => i * 20);
+          .attr("cy", (_d, i) => i * 20)
+          .attr("r", (d) => d);
       },
       function (update) {
         return update
@@ -46,15 +46,14 @@ const update = (data) =>
       function (exit) {
         return exit
           .transition()
-          .ease(d3.easeElastic)
+          .ease(d3.easeCubicOut)
           .duration(800)
-          .style("fill", "grey")
+          .attr("r", () => 0)
+          .style("opacity", 0)
           .remove();
       }
     )
     .attr("r", (d) => d);
-// .attr("cx", (_d, i) => i * 80)
-// .attr("cy", (_d, i) => i * 20);
 
 const newData = () => {
   dataa.shift();
@@ -62,12 +61,5 @@ const newData = () => {
   update(dataa);
 };
 update(dataa);
-// console.log("stuff");
 
-// circles.style("fill", "red");
-
-// circles.on("mouseover", (e) => {
-//   console.log("mouse");
-//   d3.select(e.currentTarget).style("fill", "black");
-// });
 setInterval(newData, 1000);
