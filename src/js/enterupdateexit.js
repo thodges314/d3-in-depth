@@ -14,6 +14,16 @@ const chartG = d3
 
 const dataa = [40, 10, 20, 60, 30, 50, 35];
 
+const scaleX = d3
+  .scaleLinear()
+  .domain([0, 10])
+  .range([margin.left, width - margin.right]);
+
+const scaleY = d3
+  .scaleLinear()
+  .domain([0, 10])
+  .range([margin.top, height / 2]);
+
 // const circles = chartG.selectAll("circle");
 
 const update = (data) =>
@@ -28,19 +38,19 @@ const update = (data) =>
           .on("mouseover", (e) =>
             d3.select(e.currentTarget).style("fill", "black")
           )
-          .attr("cx", () => 800)
-          .attr("cy", () => 200)
+          .attr("cx", () => scaleX(11))
+          .attr("cy", () => scaleY(11))
           .transition()
           .duration(800)
           .ease(d3.easeBounce)
-          .attr("cx", (_d, i) => i * 80)
-          .attr("cy", (_d, i) => i * 20)
+          .attr("cx", (_d, i) => scaleX(i))
+          .attr("cy", (_d, i) => scaleY(i))
           .attr("r", (d) => d),
       (update) =>
         update
           .transition()
-          .attr("cx", (_d, i) => i * 80)
-          .attr("cy", (_d, i) => i * 20),
+          .attr("cx", (_d, i) => scaleX(i))
+          .attr("cy", (_d, i) => scaleY(i)),
       (exit) =>
         exit
           .transition()
