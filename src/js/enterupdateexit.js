@@ -21,8 +21,8 @@ const update = (data) =>
     .selectAll("circle")
     .data(data, (d) => d)
     .join(
-      function (enter) {
-        return enter
+      (enter) =>
+        enter
           .append("circle")
           .style("fill", "red")
           .on("mouseover", (e) =>
@@ -35,23 +35,20 @@ const update = (data) =>
           .ease(d3.easeBounce)
           .attr("cx", (_d, i) => i * 80)
           .attr("cy", (_d, i) => i * 20)
-          .attr("r", (d) => d);
-      },
-      function (update) {
-        return update
+          .attr("r", (d) => d),
+      (update) =>
+        update
           .transition()
           .attr("cx", (_d, i) => i * 80)
-          .attr("cy", (_d, i) => i * 20);
-      },
-      function (exit) {
-        return exit
+          .attr("cy", (_d, i) => i * 20),
+      (exit) =>
+        exit
           .transition()
           .ease(d3.easeCubicOut)
           .duration(800)
           .attr("r", () => 0)
           .style("opacity", 0)
-          .remove();
-      }
+          .remove()
     )
     .attr("r", (d) => d);
 
