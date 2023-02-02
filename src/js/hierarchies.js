@@ -98,7 +98,7 @@ const groups = d3.rollup(
   (d) => d.Genre
 );
 
-// console.log(groups);
+console.log(groups);
 // console.log(groups.get("Sony Pictures"));
 // console.log(groups.get("Sony Pictures").get("Drama"));
 
@@ -158,6 +158,8 @@ console.log(names2.join("\n"));
 
 // NOW TO DRAW IT ///////////////////////////////////////////////
 const treeLayoutRoot = root.copy();
+console.log(treeLayoutRoot);
+// treeLayoutRoot.sum((d) => d[1]);
 const treeLayout = d3.tree();
 treeLayout.size([400, 200]);
 treeLayout(treeLayoutRoot);
@@ -176,7 +178,7 @@ chartG
   .attr("cx", (d) => d.x)
   .attr("cy", (d) => d.y)
   .attr("r", 4)
-  .on("mouseover", (d) => console.log(d.data));
+  .on("mouseover", (d) => console.log(d.target.__data__.data[0]));
 
 chartG
   .append("g")
